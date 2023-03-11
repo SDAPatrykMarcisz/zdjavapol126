@@ -6,6 +6,7 @@ import pl.sda.entity.PersonEntity;
 import pl.sda.service.PersonService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/persons")
@@ -25,21 +26,28 @@ public class PersonController {
         personService.savePerson(requestBody);
     }
 
-    public void getPersonByPesel(){
-
+    @GetMapping(path = "/{pesel}")
+    public PersonEntity getPersonByPesel(@PathVariable String pesel){
+        return personService.getByPesel(pesel);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<PersonEntity> getAllPersons(){
         return personService.getAllPersons();
     }
 
-    public void updatePersonByPesel(){
-
+    @PutMapping(path = "/{pesel}")
+    public void updatePersonByPesel(
+            @RequestBody PersonEntity requestBody,
+            @PathVariable String pesel){
+        personService.updatePersonByPesel(pesel, requestBody);
     }
 
-    public void deletePersonByPesel(){
-
+    //persons/12322112012 --> pesel=12322112012
+    @DeleteMapping(path = "/{pesel}")
+    public void deletePersonByPesel(
+            @PathVariable String pesel){
+        personService.deletePerson(pesel);
     }
 
 }
