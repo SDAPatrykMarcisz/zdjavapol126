@@ -32,6 +32,8 @@ public class PersonEntity {
     @Column(name = "PASSWORD")
     private String password;
 
+    @ManyToMany
+    private List<AuthorityEntity> authorities;
 
     @JsonIgnore
     @OneToMany(mappedBy="person", fetch = FetchType.EAGER)

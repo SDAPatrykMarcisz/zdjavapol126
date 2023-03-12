@@ -21,8 +21,11 @@ public class SecurityConfig {
                 .and()
                 .formLogin()
                 .disable()//wylaczenie formularza logowania
+                .logout().and()
+                .headers().frameOptions().sameOrigin().and()
                 .authorizeRequests() //ustalenie ograniczen do poszczegolnych stron
                 .antMatchers(HttpMethod.GET, "/persons*/**").authenticated()
+                .antMatchers("/h2-console**/**").permitAll()
                 .anyRequest().denyAll(); //dla kazdej niezdefiniowanej wyzej reguly, domyslnie odrzucaj dostep
         return http.build();
     }
