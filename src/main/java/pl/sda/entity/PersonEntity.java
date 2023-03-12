@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,18 +20,23 @@ public class PersonEntity {
     private Long id;
 
     @Column(name = "FIRST_NAME")
+    @NotEmpty
     private String firstName;
 
     @Column(name = "LAST_NAME")
+    @NotEmpty
     private String lastName;
 
     @Column(name = "AGE")
+    @NotNull
     private Integer age;
 
     @Column(name = "PESEL")
+    @NotEmpty
     private String pesel;
 
     @Column(name = "PASSWORD")
+    @NotEmpty
     private String password;
 
     @ManyToMany

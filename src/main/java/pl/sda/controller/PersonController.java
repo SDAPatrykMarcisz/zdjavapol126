@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.sda.entity.PersonEntity;
 import pl.sda.service.PersonService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,7 @@ public class PersonController {
 //    }
 
     @PostMapping
-    public void createPerson(
-            @RequestBody PersonEntity requestBody){
+    public void createPerson(@RequestBody @Valid PersonEntity requestBody){
 
         personService.savePerson(requestBody);
     }
