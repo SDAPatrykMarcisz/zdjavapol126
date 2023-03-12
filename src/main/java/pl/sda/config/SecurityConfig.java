@@ -26,10 +26,10 @@ public class SecurityConfig {
                 .authorizeRequests() //ustalenie ograniczen do poszczegolnych stron
                 .antMatchers(HttpMethod.POST, "/persons*/**").hasAnyRole("CREATOR", "ADMIN")
                 //.antMatchers(HttpMethod.POST, "/persons*/**").hasAuthority("ROLE_CREATOR")
-                .antMatchers(HttpMethod.GET, "/persons*/**").hasAnyAuthority("ROLE_READER", "ROLE_ADMIN")
-                .antMatchers(HttpMethod.PUT, "/persons*/**").hasAnyRole("UPDATER", "ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/persons*/**").hasAnyRole("REMOVER", "ADMIN")
-//                .antMatchers( "/persons*/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, "/persons*/**").hasAuthority("ROLE_READER")
+                .antMatchers(HttpMethod.PUT, "/persons*/**").hasRole("UPDATER")
+                .antMatchers(HttpMethod.DELETE, "/persons*/**").hasRole("REMOVER")
+                .antMatchers( "/persons*/**").hasRole("ADMIN")
                 .antMatchers("/h2-console**/**").permitAll()
                 .anyRequest().denyAll(); //dla kazdej niezdefiniowanej wyzej reguly, domyslnie odrzucaj dostep
         return http.build();
