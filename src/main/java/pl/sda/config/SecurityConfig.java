@@ -20,7 +20,8 @@ public class SecurityConfig {
             .formLogin()
                 .disable()//wylaczenie formularza logowania
             .authorizeRequests() //ustalenie ograniczen do poszczegolnych stron
-                .antMatchers(HttpMethod.GET,"/persons*/**").authenticated();
+                .antMatchers(HttpMethod.GET,"/persons*/**").authenticated()
+                .anyRequest().denyAll(); //dla kazdej niezdefiniowanej wyzej reguly, domyslnie odrzucaj dostep
         return http.build();
     }
 
