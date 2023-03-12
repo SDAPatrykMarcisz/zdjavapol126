@@ -29,6 +29,10 @@ public class PersonEntity {
     @Column(name = "PESEL")
     private String pesel;
 
+    @Column(name = "PASSWORD")
+    private String password;
+
+
     @JsonIgnore
     @OneToMany(mappedBy="person", fetch = FetchType.EAGER)
     private List<AccountEntity> accounts;
