@@ -1,6 +1,7 @@
 package pl.sda.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.entity.PersonEntity;
 import pl.sda.service.PersonService;
@@ -14,6 +15,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class PersonController {
 
+    @Value("${spring.security.user.password}")
+    private String defaultUserPassword;
     private final PersonService personService;
 
 //    public PersonController(PersonService personService) {
