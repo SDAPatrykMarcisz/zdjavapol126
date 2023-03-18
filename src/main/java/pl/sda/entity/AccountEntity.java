@@ -22,7 +22,7 @@ public class AccountEntity {
     @Column(name = "BALANCE")
     private BigDecimal balance;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "PERSON_ID")
     private PersonEntity person;
 

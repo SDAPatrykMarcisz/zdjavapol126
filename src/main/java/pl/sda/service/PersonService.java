@@ -1,6 +1,7 @@
 package pl.sda.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.entity.PersonEntity;
 import pl.sda.repository.PersonRepository;
@@ -14,12 +15,14 @@ import java.util.Optional;
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<PersonEntity> getAllPersons(){
         return personRepository.findAll();
     }
 
     public void savePerson(PersonEntity personEntity){
+        personEntity.setPassword(passwordEncoder.encode(personEntity.getPassword()));
         personRepository.save(personEntity);
     }
 
