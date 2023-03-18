@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .antMatchers(HttpMethod.PUT, "/persons*/**").hasAnyRole("UPDATER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE, "/persons*/**").hasAnyRole("REMOVER", "ADMIN")
                 .antMatchers("/h2-console**/**").permitAll()
-                .anyRequest().denyAll(); //dla kazdej niezdefiniowanej wyzej reguly, domyslnie odrzucaj dostep
+                .anyRequest().authenticated(); //dla kazdej niezdefiniowanej wyzej reguly, domyslnie odrzucaj dostep
         return http.build();
     }
 

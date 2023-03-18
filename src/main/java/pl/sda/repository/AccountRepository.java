@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
     Optional<AccountEntity> findByPerson_PeselAndAccountNumber(String pesel, String accountNumber);
-    
+
+    Optional<AccountEntity> findByAccountNumber(String accountSenderNumber);
 }

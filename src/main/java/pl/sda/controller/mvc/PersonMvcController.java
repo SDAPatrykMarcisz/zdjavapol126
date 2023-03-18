@@ -1,4 +1,4 @@
-package pl.sda.controller;
+package pl.sda.controller.mvc;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +25,18 @@ public class PersonMvcController {
         return "index";
     }
 
+    @RequestMapping(path = "/{pesel}/edycja", method = RequestMethod.GET)
+    public String updateUserForm(@PathVariable(value = "pesel") String pesel, Model model) {
+        model.addAttribute("formObj", personService.getByPesel(pesel));
+        return "update-user";
+    }
+
+    @RequestMapping(path = "/{pesel}/edycja", method = RequestMethod.POST)
+    public String updateUser(@PathVariable(value = "pesel") String pesel, @ModelAttribute(name = "formObj") PersonEntity entity) {
+        personService.updatePersonByPesel(pesel, entity);
+        return "forward:/";
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public String getPersons(Model model) {
         model.addAttribute("persons",
@@ -39,7 +51,8 @@ public class PersonMvcController {
     }
 
     @PostMapping("/nowy-uzytkonik")
-    public String saveNewPerson(@ModelAttribute(name = "formObj") PersonEntity entity){
+    public String saveNewPerson(@ModelAttribute(name = "formObj")
+                                            PersonEntity entity){
         log.info(entity.toString());
         return "redirect:/dane-klienta";
     }
