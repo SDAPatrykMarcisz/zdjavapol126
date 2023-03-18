@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .logout().and()
                 .headers().frameOptions().sameOrigin().and()
                 .authorizeRequests() //ustalenie ograniczen do poszczegolnych stron
-                .antMatchers("/").permitAll()
+                .antMatchers("/", "/dane-klienta/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/persons*/**").hasAnyRole("CREATOR", "ADMIN")
                 //.antMatchers(HttpMethod.POST, "/persons*/**").hasAnyAuthority("ROLE_CREATOR", "ROLE_ADMIN")
                 .antMatchers(HttpMethod.GET, "/persons*/**").hasAnyAuthority("ROLE_READER", "ROLE_ADMIN")
